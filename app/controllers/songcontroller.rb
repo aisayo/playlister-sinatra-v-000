@@ -35,7 +35,8 @@ class SongController < ApplicationController
 
   patch '/songs/:slug' do
     @song = Song.find_by_slug(params[:slug])
-    @song.artist = Artist.find_or_create_by(name: params[:artist_name]) if !params[:artist_name].empty?
+    @song.artist = Artist.find_or_create_by(name: params[:artist_name]) 
+    if !params[:artist_name].empty?
     @song.genres = params[:genres].map {|g| Genre.find_by(name: g)}
     @song.save
     flash[:message] = "Successfully updated song."
