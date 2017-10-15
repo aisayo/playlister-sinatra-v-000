@@ -39,7 +39,7 @@ class SongController < ApplicationController
     if !params[:artist_name].empty?
     @song.genres = params[:genres].map {|g| Genre.find_by(name: g)}
     @song.save
-  end
+    end
     flash[:message] = "Successfully updated song."
     redirect "/songs/#{@song.slug}"
   end
