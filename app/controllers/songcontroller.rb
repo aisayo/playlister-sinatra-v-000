@@ -34,6 +34,7 @@ class SongController < ApplicationController
   end
 
   patch '/songs/:slug' do
+    require 'pry'
     @song = Song.find_by_slug(params[:slug])
     @song.artist = Artist.find_or_create_by(name: params[:artist_name]) if !params[:artist_name].empty?
     @song.genres = params[:genres].map {|g| Genre.find_by(name: g)}
